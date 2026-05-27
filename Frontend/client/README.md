@@ -3,7 +3,15 @@
 A full-stack food delivery web application inspired by Swiggy/Zomato.  
 Built using React, Redux Toolkit, Node.js, Express, PostgreSQL, and Sequelize.
 
-It supports users, restaurants, and admin with full ordering, management, and analytics system.
+It supports users, restaurants, and admin with food ordering, management, and analytics system.
+
+---
+
+# Live Data Integration
+
+This project uses a live Swiggy API to fetch real-time restaurant and food data.  
+Data is dynamically loaded in the frontend instead of using static mock data.  
+This provides updated restaurant listings, menus, and prices similar to real-world applications.
 
 # Project Features
 
@@ -43,6 +51,7 @@ It supports users, restaurants, and admin with full ordering, management, and an
 - Axios
 - Leaflet / Google Maps
 - Recharts
+- react-icons
 
 ## Backend
 
@@ -56,41 +65,6 @@ It supports users, restaurants, and admin with full ordering, management, and an
 - JWT Authentication
 - bcrypt password hashing
 - Role-Based Access Control (RBAC)
-
----
-
-# Folder Structure
-
-## Frontend
-
-```
-src/
-├── components/
-├── pages/
-├── services/
-├── routes/
-├── redux/
-├── hooks/
-├── utils/
-└── App.jsx
-```
-
-## Backend
-
-```
-server/
-├── controllers/
-├── routes/
-├── models/
-├── middleware/
-├── config/
-├── utils/
-└── server.js
-```
-
----
-
-# Installation
 
 ## Frontend
 
