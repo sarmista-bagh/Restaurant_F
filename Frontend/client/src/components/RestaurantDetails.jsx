@@ -27,7 +27,7 @@ const RestaurantDetails = () => {
   const fetchMenu = async () => {
     try {
       const response = await axios.get(
-        `https://corsproxy.io/?https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.3924982&lng=78.46796379999999&restaurantId=${resId}&submitAction=ENTER`,
+        `https://menu-gdbm.onrender.com/api/menu/${resId}`,
       );
 
       const json = response.data;
