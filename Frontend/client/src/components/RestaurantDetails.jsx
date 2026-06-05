@@ -16,7 +16,7 @@ const RestaurantDetails = () => {
 
   const dispatch = useDispatch();
 
-  // Redux Cart
+  // Redux cart 
   const cartItems = useSelector((store) => store.cart.items);
 
   useEffect(() => {
