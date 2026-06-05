@@ -10,9 +10,15 @@ const Orders = () => {
     try {
       setLoading(true);
 
-      const res = await axios.get("http://localhost:5000/api/admin/orders", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        //"http://localhost:5000/api/admin/orders",
+
+        "https://menu-gdbm.onrender.com/api/admin/order-items",
+
+        {
+          withCredentials: true,
+        },
+      );
 
       setOrders(res.data);
     } catch (err) {
@@ -30,7 +36,9 @@ const Orders = () => {
   const updateStatus = async (id, status) => {
     try {
       await axios.patch(
-        `http://localhost:5000/api/admin/orders/${id}/status`,
+        // `http://localhost:5000/api/admin/orders/${id}/status`,
+
+        `https://menu-gdbm.onrender.com/api/admin/orders/${id}/status`,
         { status },
         { withCredentials: true },
       );

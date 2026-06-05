@@ -68,7 +68,10 @@ const Restaurants = ({ open, setOpen, editData, refresh }) => {
       if (editData) {
         // UPDATE
         await axios.put(
-          `http://localhost:5000/api/admin/restaurants/${editData.id}`,
+          //`http://localhost:5000/api/admin/restaurants/${editData.id}`,
+
+          `https://menu-gdbm.onrender.com/api/admin/restaurants/${editData.id}`,
+
           payload,
           { withCredentials: true },
         );
@@ -76,7 +79,10 @@ const Restaurants = ({ open, setOpen, editData, refresh }) => {
       } else {
         // CREATE
         await axios.post(
-          "http://localhost:5000/api/admin/restaurants",
+          //"http://localhost:5000/api/admin/restaurants",
+
+          "https://menu-gdbm.onrender.com/api/admin/restaurants",
+
           payload,
           { withCredentials: true },
         );

@@ -10,7 +10,10 @@ const OrderItems = () => {
       setLoading(true);
 
       const res = await axios.get(
-        "http://localhost:5000/api/admin/order-items",
+        // "http://localhost:5000/api/admin/order-items",
+
+        "https://menu-gdbm.onrender.com/api/admin/order-items",
+
         { withCredentials: true },
       );
 

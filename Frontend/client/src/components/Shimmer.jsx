@@ -19,6 +19,9 @@ const Shimmer = () => {
               {/* Cuisine */}
               <div className="h-4 w-full rounded bg-gray-200 animate-pulse"></div>
               <div className="h-4 w-5/6 rounded bg-gray-200 animate-pulse"></div>
+              {/* Cuisine */}
+              <div className="h-4 w-full rounded bg-gray-200 animate-pulse"></div>
+              <div className="h-4 w-5/6 rounded bg-gray-200 animate-pulse"></div>
 
               {/* Rating + Delivery */}
               <div className="flex items-center justify-between pt-2">

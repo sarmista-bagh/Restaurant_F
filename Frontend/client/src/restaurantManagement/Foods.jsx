@@ -23,7 +23,10 @@ const Foods = () => {
 
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/admin/foods/${restaurantId}`,
+        //`http://localhost:5000/api/admin/foods/${restaurantId}`,
+
+        `https://menu-gdbm.onrender.com/api/admin/foods/${restaurantId}`,
+
         { withCredentials: true },
       );
 
@@ -60,7 +63,10 @@ const Foods = () => {
       // ================= UPDATE =================
       if (editId) {
         await axios.put(
-          `http://localhost:5000/api/admin/foods/${editId}`,
+          // `http://localhost:5000/api/admin/foods/${editId}`,
+
+          `https://menu-gdbm.onrender.com/api/admin/foods/${editId}`,
+
           payload,
           { withCredentials: true },
         );
@@ -69,9 +75,15 @@ const Foods = () => {
       }
       // ================= CREATE =================
       else {
-        await axios.post("http://localhost:5000/api/admin/foods", payload, {
-          withCredentials: true,
-        });
+        await axios.post(
+          //"http://localhost:5000/api/admin/foods",
+
+          "https://menu-gdbm.onrender.com/api/admin/foods",
+          payload,
+          {
+            withCredentials: true,
+          },
+        );
 
         alert("Food created ✅");
       }
@@ -103,9 +115,15 @@ const Foods = () => {
   // ================= DELETE =================
   const deleteFood = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/admin/foods/${id}`, {
-        withCredentials: true,
-      });
+      await axios.delete(
+        //`http://localhost:5000/api/admin/foods/${id}`,
+
+        `https://menu-gdbm.onrender.com/api/admin/foods/${id}`,
+
+        {
+          withCredentials: true,
+        },
+      );
 
       setFoods(foods.filter((f) => f.id !== id));
     } catch (err) {

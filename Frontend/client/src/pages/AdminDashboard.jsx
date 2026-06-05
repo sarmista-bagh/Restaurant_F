@@ -83,9 +83,16 @@ export default function AdminDashboard() {
   /* ================= FETCH DASHBOARD ================= */
   const fetchDashboard = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/dashboard", {
-        withCredentials: true,
-      });
+      // const res = await axios.get("http://localhost:5000/api/admin/dashboard", {
+      //   withCredentials: true,
+      // });
+
+      const res = await axios.get(
+        "https://menu-gdbm.onrender.com/api/admin/dashboard",
+        {
+          withCredentials: true,
+        },
+      );
 
       setStats({
         users: Number(res.data?.users || 0),
@@ -103,8 +110,13 @@ export default function AdminDashboard() {
   /* ================= ANALYTICS ================= */
   const fetchAnalytics = async () => {
     try {
+      // const res = await axios.get(
+      //   "http://localhost:5000/api/admin/analytics/daily",
+      //   { withCredentials: true },
+      // );
+
       const res = await axios.get(
-        "http://localhost:5000/api/admin/analytics/daily",
+        "https://menu-gdbm.onrender.com/api/admin/analytics/daily",
         { withCredentials: true },
       );
 
@@ -117,8 +129,13 @@ export default function AdminDashboard() {
   /* ================= LIVE ORDERS ================= */
   const fetchLiveOrders = async () => {
     try {
+      // const res = await axios.get(
+      //   "http://localhost:5000/api/admin/orders/live",
+      //   { withCredentials: true },
+      // );
+
       const res = await axios.get(
-        "http://localhost:5000/api/admin/orders/live",
+        "https://menu-gdbm.onrender.com/api/admin/orders/live",
         { withCredentials: true },
       );
 

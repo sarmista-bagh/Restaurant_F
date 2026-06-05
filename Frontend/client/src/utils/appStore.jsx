@@ -9,7 +9,7 @@ const appStore = configureStore({
     cart: cartReducer,
     orders: ordersReducer,
     location: locationReducer,
-    auth: authReducer, //
+    auth: authReducer,
   },
 });
 export default appStore;
