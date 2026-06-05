@@ -170,6 +170,7 @@ const Register = () => {
                 <option value="customer">Customer</option>
 
                 <option value="restaurant">Restaurant Owner</option>
+                <option value="restaurant">Admin</option>
               </select>
             </div>
 
