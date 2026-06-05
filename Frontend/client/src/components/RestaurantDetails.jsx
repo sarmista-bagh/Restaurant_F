@@ -213,6 +213,7 @@ const RestaurantDetails = () => {
 
   const [restaurant, setRestaurant] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -220,52 +221,60 @@ const RestaurantDetails = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   useEffect(() => {
+    const fetchRestaurantMenu = async () => {
+      try {
+        setLoading(true);
+
+        const response = await axios.get(
+          `https://menu-gdbm.onrender.com/api/menu/${resId}`,
+        );
+
+        setRestaurant(response.data?.restaurant || null);
+        setMenuItems(response.data?.items || []);
+      } catch (error) {
+        console.error("Menu Fetch Error:", error);
+        setRestaurant(null);
+        setMenuItems([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchRestaurantMenu();
   }, [resId]);
-
-  const fetchRestaurantMenu = async () => {
-    try {
-      const response = await axios.get(
-        `https://menu-gdbm.onrender.com/api/menu/${resId}`,
-      );
-
-      console.log("MENU API:", response.data);
-
-      setRestaurant(response.data.restaurant);
-      setMenuItems(response.data.items);
-    } catch (error) {
-      console.error("Menu Fetch Error:", error);
-    }
-  };
 
   const handleAddItem = (item) => {
     dispatch(addItem(item));
   };
 
+  if (loading) return <Shimmer />;
+
   if (!restaurant) {
-    return <Shimmer />;
+    return (
+      <div className="text-center mt-10 text-red-500">Restaurant not found</div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gray-100 pb-28">
-      {/* Header */}
+      {/* Restaurant Header */}
       <div className="bg-white shadow-md rounded-b-3xl p-6">
-        <h1 className="text-3xl font-bold">{restaurant.name}</h1>
+        <h1 className="text-3xl font-bold">{restaurant?.name}</h1>
 
-        <p className="text-gray-500 mt-2">{restaurant.address}</p>
+        <p className="text-gray-500 mt-2">{restaurant?.address}</p>
 
         <div className="flex gap-4 mt-4">
           <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-            ⭐ {restaurant.rating}
+            ⭐ {restaurant?.rating || "0.0"}
           </span>
 
           <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">
-            ⏱ {restaurant.delivery_time} mins
+            ⏱ {restaurant?.delivery_time || 30} mins
           </span>
         </div>
       </div>
 
-      {/* Menu */}
+      {/* Menu Items */}
       <div className="max-w-5xl mx-auto px-4 mt-6">
         {menuItems.length === 0 ? (
           <div className="bg-white p-6 rounded-xl shadow text-center">
@@ -285,7 +294,7 @@ const RestaurantDetails = () => {
 
               <button
                 onClick={() => handleAddItem(item)}
-                className="mt-4 bg-green-500 text-white px-6 py-2 rounded-xl"
+                className="mt-4 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-xl transition"
               >
                 ADD +
               </button>
@@ -307,7 +316,7 @@ const RestaurantDetails = () => {
 
           <button
             onClick={() => navigate("/cart")}
-            className="bg-[#60B246] px-6 py-2 rounded-md"
+            className="bg-[#60B246] hover:bg-[#58a93f] px-6 py-2 rounded-md"
           >
             VIEW CART →
           </button>
